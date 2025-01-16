@@ -1,0 +1,7 @@
+Tecnologias usadas:
+
+HTML, Tailwind pelo CDN, Heroicons para os SVG.
+
+Os numeros são inseridos de 1 à 1. Conforme são inseridos, a media, quantidade positiva e negativa são recalculados.
+Pode-se remover os numeros na lista de numeros inseridos, e assim que removidos é refeito o calculo novamente mostrando os novos resultados.
+As porcentagens são carregadas nas barrinhas embaixo dos numeros que estão nos cards.
