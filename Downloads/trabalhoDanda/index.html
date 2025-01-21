@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise Numérica</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body class="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
@@ -14,7 +15,7 @@
     </div>
 
     <div class="container mx-auto px-4 py-12 relative">
-        <!-- Header Section Victor viado -->
+        <!-- Cabeçalho -->
         <div class="flex flex-col items-center justify-center gap-4 mb-16">
             <div class="bg-gradient-to-r from-indigo-600 to-purple-600 p-4 rounded-2xl shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -36,8 +37,7 @@
             </p>
         </div>
 
-
-        <!-- Input Section Victor gay -->
+        <!-- Imput para inserir o numero: -->
         <div class="max-w-2xl mx-auto mb-16">
             <div class="bg-white/90 p-3 rounded-2xl shadow-xl border border-indigo-100 backdrop-blur-sm">
                 <div class="flex items-center gap-3 px-4 mb-2">
@@ -50,10 +50,10 @@
                 </div>
 
                 <div class="flex gap-4">
-                    <input type="number" placeholder="Digite um número"
+                    <input id="input-numero" type="number" placeholder="Digite um número"
                         class="flex-1 px-6 py-4 bg-transparent text-gray-800 placeholder-gray-400 text-xl border-0 focus:ring-0 outline-none" />
                     <button
-                        class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center gap-2 font-semibold text-lg shadow-md group">
+                    id="botao-adicionar" class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center gap-2 font-semibold text-lg shadow-md group">
                         Adicionar
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -65,9 +65,8 @@
             </div>
         </div>
 
-        <!-- Stats Grid  -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            <!-- Mean Card -->
+            <!--Média aritmética -->
             <div
                 class="bg-white/90 rounded-3xl p-8 shadow-xl border border-indigo-100 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                 <div class="flex items-center gap-3 mb-6">
@@ -81,13 +80,12 @@
                     <h2 class="text-2xl font-semibold text-indigo-900">Média Aritmética</h2>
                 </div>
                 <p
-                    class="text-7xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                id="media-aritmetica" class="text-7xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                     0.00
                 </p>
             </div>
 
-
-            <!-- Positive Numbers Card -->
+            <!-- Números positivos -->
             <div
                 class="bg-white/90 rounded-3xl p-8 shadow-xl border border-emerald-100 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                 <div class="flex items-center gap-3 mb-6">
@@ -99,17 +97,17 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-emerald-900">Números Positivos</h2>
                 </div>
-                <p class="text-7xl font-bold text-emerald-600 mb-2">0</p>
+                <p id="numeros-positivos" class="text-7xl font-bold text-emerald-600 mb-2">0</p>
                 <div class="flex items-center gap-2 text-emerald-600">
                     <div class="h-2 bg-emerald-200 rounded-full flex-1">
-                        <div class="h-full bg-emerald-600 rounded-full transition-all duration-500" style="width: 0%">
+                        <div id="barra-positivos" class="h-full bg-emerald-600 rounded-full transition-all duration-500" style="width: 0%">
                         </div>
                     </div>
-                    <span class="text-xl font-semibold">0.0%</span>
+                    <span id="porcentagem-positivos" class="text-xl font-semibold">0.0%</span>
                 </div>
             </div>
 
-            <!-- Negative Numbers Card -->
+            <!-- Números negativos-->
             <div
                 class="bg-white/90 rounded-3xl p-8 shadow-xl border border-rose-100 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                 <div class="flex items-center gap-3 mb-6">
@@ -121,18 +119,18 @@
                     </div>
                     <h2 class="text-2xl font-semibold text-rose-900">Números Negativos</h2>
                 </div>
-                <p class="text-7xl font-bold text-rose-600 mb-2">0</p>
+                <p id="numeros-negativos" class="text-7xl font-bold text-rose-600 mb-2">0</p>
                 <div class="flex items-center gap-2 text-rose-600">
                     <div class="h-2 bg-rose-200 rounded-full flex-1">
-                        <div class="h-full bg-rose-600 rounded-full transition-all duration-500" style="width: 0%">
+                        <div id="barra-negativos" class="h-full bg-rose-600 rounded-full transition-all duration-500" style="width: 0%">
                         </div>
                     </div>
-                    <span class="text-xl font-semibold">0.0%</span>
+                    <span id="porcentagem-negativos" class="text-xl font-semibold">0.0%</span>
                 </div>
             </div>
         </div>
 
-        <!-- Numbers List -->
+        <!-- Lista de numeros -->
         <div class="bg-white/90 rounded-3xl p-8 shadow-xl border border-indigo-100 backdrop-blur-sm">
             <div class="flex items-center gap-3 mb-8">
                 <div class="bg-indigo-100 p-2 rounded-lg">
@@ -144,7 +142,7 @@
                 </div>
                 <h3 class="text-2xl font-semibold text-indigo-900">Números Inseridos</h3>
             </div>
-            <div class="flex flex-wrap gap-3">
+            <div id="lista-numeros" class="flex flex-wrap gap-3">
                 <div class="flex items-center gap-2 text-gray-500 italic">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-4 h-4 text-gray-500">
