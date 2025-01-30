@@ -88,41 +88,45 @@
             <div
                 class="bg-white/90 rounded-3xl p-8 shadow-xl border border-indigo-100 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-green-100 p-2 rounded-lg">
+                    <div class="bg-indigo-100 p-2 rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-8 h-8 text-green-600">
+                            stroke="currentColor" class="w-8 h-8 text-indigo-600">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 2v10.5a6.506 6.506 0 0 1 3 0V2a6.506 6.506 0 0 1 3 0V20l-3-1.5V14.25a6.503 6.503 0 0 1-3 0V20l-3-1.5V14.25a6.502 6.502 0 0 1 3 0V14.25c-1.313-.187-2.392-.525-3.25-.75V7.5a6.505 6.505 0 0 1-3 0Z" />
+                                d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
                         </svg>
                     </div>
-                    <h2 class="text-2xl font-semibold text-green-900">Números Positivos</h2>
+                    <h2 class="text-2xl font-semibold text-indigo-900">Positivos</h2>
                 </div>
-                <p id="positiveDisplay" class="text-5xl font-bold text-center text-green-600 tracking-tight mb-6">0</p>
-                <p class="text-xl text-center text-green-600">Percentual: <span id="positivePercentage">0%</span></p>
+                <p id="positiveDisplay" class="text-5xl font-bold text-center text-indigo-600 tracking-tight mb-6">
+                    0
+                </p>
+                <p id="positivePercentage" class="text-xl text-center text-indigo-600 mb-6">0%</p>
             </div>
 
             <!-- Negative Numbers Card -->
             <div
                 class="bg-white/90 rounded-3xl p-8 shadow-xl border border-indigo-100 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
                 <div class="flex items-center gap-3 mb-6">
-                    <div class="bg-red-100 p-2 rounded-lg">
+                    <div class="bg-indigo-100 p-2 rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-8 h-8 text-red-600">
+                            stroke="currentColor" class="w-8 h-8 text-indigo-600">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 3v18M6 12h12" />
+                                d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941" />
                         </svg>
                     </div>
-                    <h2 class="text-2xl font-semibold text-red-900">Números Negativos</h2>
+                    <h2 class="text-2xl font-semibold text-indigo-900">Negativos</h2>
                 </div>
-                <p id="negativeDisplay" class="text-5xl font-bold text-center text-red-600 tracking-tight mb-6">0</p>
-                <p class="text-xl text-center text-red-600">Percentual: <span id="negativePercentage">0%</span></p>
+                <p id="negativeDisplay" class="text-5xl font-bold text-center text-indigo-600 tracking-tight mb-6">
+                    0
+                </p>
+                <p id="negativePercentage" class="text-xl text-center text-indigo-600 mb-6">0%</p>
             </div>
         </div>
 
-        <!-- Number List Section -->
-        <div>
-            <h2 class="text-2xl text-indigo-600 font-semibold mb-4">Números Inseridos</h2>
-            <ul id="numberList" class="text-xl text-gray-800 space-y-2"></ul>
+        <!-- Numbers List Section -->
+        <div class="bg-white/90 p-6 rounded-3xl shadow-xl border border-indigo-100 backdrop-blur-sm">
+            <h2 class="text-2xl font-semibold text-indigo-900 mb-6">Lista de Números</h2>
+            <ul id="numberList" class="space-y-2 text-indigo-800"></ul>
         </div>
     </div>
 
@@ -130,70 +134,65 @@
         const numbers = [];
         const input = document.getElementById("inputNumber");
         const addButton = document.getElementById("addButton");
-
-        // Seletores para atualizar estatísticas
         const meanDisplay = document.getElementById("meanDisplay");
         const positiveDisplay = document.getElementById("positiveDisplay");
         const negativeDisplay = document.getElementById("negativeDisplay");
         const positivePercentage = document.getElementById("positivePercentage");
         const negativePercentage = document.getElementById("negativePercentage");
-
-        // Campo de lista para os números inseridos
         const numberList = document.getElementById("numberList");
 
-        // Função para calcular a média com números negativos sendo subtraídos
+        // Função para calcular a média
         function calculateMean(nums) {
-            const totalSum = nums.reduce((acc, num) => acc + num, 0); // Somando todos os números
-            return nums.length ? (totalSum / nums.length).toFixed(2) : "0.00";
+            const total = nums.reduce((acc, num) => acc + num, 0);
+            return (total / nums.length).toFixed(2);
         }
 
         // Função para calcular os percentuais de números positivos e negativos
-        function calculatePercentages(positiveCount, negativeCount, totalCount) {
-            const positivePercentageValue = totalCount ? ((positiveCount / totalCount) * 100).toFixed(2) : 0;
-            const negativePercentageValue = totalCount ? ((negativeCount / totalCount) * 100).toFixed(2) : 0;
-            return { positivePercentageValue, negativePercentageValue };
+        function calculatePercentages(nums) {
+            const positiveCount = nums.filter(num => num > 0).length;
+            const negativeCount = nums.filter(num => num < 0).length;
+
+            const positivePercentageValue = (positiveCount / nums.length) * 100 || 0;
+            const negativePercentageValue = (negativeCount / nums.length) * 100 || 0;
+
+            return {
+                positivePercentageValue: positivePercentageValue.toFixed(2),
+                negativePercentageValue: negativePercentageValue.toFixed(2),
+                positiveCount,
+                negativeCount
+            };
         }
 
         // Função para atualizar as estatísticas
         function updateStats() {
-            const positiveNumbers = numbers.filter(num => num > 0);
-            const negativeNumbers = numbers.filter(num => num < 0);
-            const totalNumbers = numbers.length;
+            const mean = calculateMean(numbers);
+            const { positivePercentageValue, negativePercentageValue, positiveCount, negativeCount } = calculatePercentages(numbers);
 
-            meanDisplay.textContent = calculateMean(numbers);
-            positiveDisplay.textContent = positiveNumbers.length;
-            negativeDisplay.textContent = negativeNumbers.length;
-
-            const { positivePercentageValue, negativePercentageValue } = calculatePercentages(
-                positiveNumbers.length,
-                negativeNumbers.length,
-                totalNumbers
-            );
-
+            // Atualizando os displays
+            meanDisplay.textContent = mean;
+            positiveDisplay.textContent = positiveCount;
+            negativeDisplay.textContent = negativeCount;
             positivePercentage.textContent = `${positivePercentageValue}%`;
             negativePercentage.textContent = `${negativePercentageValue}%`;
+
+            // Atualizando a lista de números inseridos
+            numberList.innerHTML = numbers.map(num => `<li class="text-gray-800">${num}</li>`).join('');
         }
 
-        // Função para atualizar a lista de números
-        function updateNumberList() {
-            numberList.innerHTML = ''; // Limpa a lista
-            numbers.forEach(num => {
-                const listItem = document.createElement('li');
-                listItem.textContent = num;
-                numberList.appendChild(listItem);
-            });
-        }
-
-        // Evento de adição de número
+        // Adicionar número ao array e atualizar as estatísticas
         addButton.addEventListener("click", () => {
-            const number = parseFloat(input.value);
-            if (!isNaN(number)) {
-                numbers.push(number);
-                updateStats();
-                updateNumberList();
-                input.value = ""; // Limpa o campo
-            } else {
-                alert("Por favor, insira um número válido.");
+            const num = parseFloat(input.value);
+            if (!isNaN(num)) {
+                numbers.push(num);
+                input.value = ""; // Limpar o campo de input
+                updateStats(); // Atualizar as estatísticas
+            }
+        });
+
+        // Permitir pressionar "Enter" para adicionar número
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                addButton.click();
             }
         });
     </script>
